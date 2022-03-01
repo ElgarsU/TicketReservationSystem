@@ -24,5 +24,4 @@ public class Ticket {
     private short capacity;
     @ManyToOne
     User user;
-
 }
