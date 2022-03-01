@@ -1,9 +1,11 @@
-package ticket;
+package com.example.ticketReservationSystem.ticket;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.example.ticketReservationSystem.user.User;
+
 import javax.persistence.*;
 
 @Builder
@@ -20,4 +22,7 @@ public class Ticket {
     private String flightNumber;
     @Column(name = "capacity", nullable = false)
     private short capacity;
+    @ManyToOne
+    User user;
+
 }
