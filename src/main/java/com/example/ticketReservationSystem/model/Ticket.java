@@ -1,11 +1,9 @@
-package com.example.ticketReservationSystem.ticket;
+package com.example.ticketReservationSystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.example.ticketReservationSystem.user.User;
-
 import javax.persistence.*;
 
 @Builder
@@ -14,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

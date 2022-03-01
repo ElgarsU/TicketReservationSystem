@@ -1,11 +1,9 @@
-package com.example.ticketReservationSystem.user;
+package com.example.ticketReservationSystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.example.ticketReservationSystem.ticket.Ticket;
-
 import javax.persistence.*;
 import java.util.List;
 

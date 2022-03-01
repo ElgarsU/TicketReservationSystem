@@ -1,4 +1,4 @@
-package com.example.ticketReservationSystem.flight;
+package com.example.ticketReservationSystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
