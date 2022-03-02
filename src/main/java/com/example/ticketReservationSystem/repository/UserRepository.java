@@ -1,7 +1,9 @@
 package com.example.ticketReservationSystem.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.ticketReservationSystem.model.Ticket;
+import com.example.ticketReservationSystem.model.User;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<Ticket, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
 }
