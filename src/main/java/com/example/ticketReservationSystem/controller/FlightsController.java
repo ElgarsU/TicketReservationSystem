@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -16,10 +17,17 @@ public class FlightsController {
     private FlightsRepository flightsRepository;
 
     //send all available flights to frontend
-    @GetMapping("/flights")
-    public String viewAllFlights(Model model) {
-        List<Flights> flights = flightsRepository.findAll();
-        model.addAttribute("listFlights", flights);
-        return "flights";
+//    @GetMapping("/flights")
+//    public String viewAllFlights(Model model) {
+//        List<Flights> flights = flightsRepository.findAll();
+//        model.addAttribute("listFlights", flights);
+//        return "flights";
+//    }
+
+    @GetMapping({"/flights"})
+    public ModelAndView viewAllFlights() {
+        ModelAndView mav = new ModelAndView("flights");
+        mav.addObject("flights", flightsRepository.findAll());
+        return mav;
     }
 }

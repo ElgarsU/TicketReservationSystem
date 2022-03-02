@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="flight : ${listFlights}">
+                <tr th:each="flight : ${flights}">
                     <td th:text="${flight.departureLocation}"></td>
                     <td th:text="${flight.arrivalLocation}"></td>
                     <td th:text="${flight.flightStart}"></td>
