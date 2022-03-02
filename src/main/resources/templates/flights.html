@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TRS - All flights</title>
+</head>
+<body>
+    <div align = "center">
+        <table>
+            <thead>
+                <tr>
+                    <th>Departure Airport</th>
+                    <th>Destination Airport</th>
+                    <th>Flight Departure Time</th>
+                    <th>Flight Arrival Time</th>
+                    <th>Ticket Price (per seat)</th>
+                    <th>Available seats</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="flight : ${listFlights}">
+                    <td th:text="${flight.departureLocation}"></td>
+                    <td th:text="${flight.arrivalLocation}"></td>
+                    <td th:text="${flight.flightStart}"></td>
+                    <td th:text="${flight.flightEnd}"></td>
+                    <td th:text="${flight.ticketPrice}"></td>
+                    <td th:text="${flight.flightCapacity}"></td>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
