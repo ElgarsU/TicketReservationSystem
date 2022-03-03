@@ -48,13 +48,13 @@ public class UserTest {
 
     @Test
     public void testCreateUser(){
-        String password = "admin123";
+        String password = "admin";
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10,new SecureRandom());
         String encoded = bCryptPasswordEncoder.encode(password);
         User user = new User();
-        user.setEmail("admin1@gmail.com");
-        user.setName("admin1234");
-        user.setSurname("admin1234");
+        user.setEmail("adminE@gmail.com");
+        user.setName("adminE");
+        user.setSurname("adminE");
         user.setPassword(encoded);
         Role roleuser = role.findByName("ROLE_ADMIN");
         ArrayList<Role> roles = new ArrayList<Role>();

@@ -16,18 +16,18 @@ public class FlightsController {
     @Autowired
     private FlightsRepository flightsRepository;
 
-    //send all available flights to frontend
-//    @GetMapping("/flights")
-//    public String viewAllFlights(Model model) {
-//        List<Flights> flights = flightsRepository.findAll();
-//        model.addAttribute("listFlights", flights);
-//        return "flights";
-//    }
-
     @GetMapping({"/flights"})
     public ModelAndView viewAllFlights() {
         ModelAndView mav = new ModelAndView("flights");
         mav.addObject("flights", flightsRepository.findAll());
+        return mav;
+    }
+
+    @GetMapping({"/addFlight"})
+    public ModelAndView addFlightForm() {
+        ModelAndView mav = new ModelAndView("add-flight");
+        Flights newFlight = new Flights();
+        mav.addObject("flight", newFlight);
         return mav;
     }
 }

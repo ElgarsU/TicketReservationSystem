@@ -35,7 +35,7 @@ public class UserController {
 
     @GetMapping("/admin")
     public String forAdmin(){
-        return "admin_test";
+        return "admin";
     }
 
 
