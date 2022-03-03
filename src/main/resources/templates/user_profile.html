@@ -25,11 +25,28 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <div sec:authorize="isAuthenticated()">
-          Hello <span sec:authentication="principal.username"></span></div>
+          Hello <span th:text="${currentUser.getUsername()}"></span></div>
       <li><a th:href="@{/Logout}">&nbsp;Log out</a>
       </li>
     </ul>
   </nav>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+    </tr>
+    </thead>
+    <div class="form-group label-floating">
+
+
+      <td th:text="${user.name}"></td>
+      <td th:text="${user.surname}"></td>
+    </div>
+
+  </table>
+
+
 </div>
 </body>
 </html>

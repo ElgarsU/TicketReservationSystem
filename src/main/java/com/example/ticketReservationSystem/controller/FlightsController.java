@@ -16,7 +16,7 @@ public class FlightsController {
     @Autowired
     private FlightsRepository flightsRepository;
 
-    //send all available flights to frontend
+//    send all available flights to frontend
 //    @GetMapping("/flights")
 //    public String viewAllFlights(Model model) {
 //        List<Flights> flights = flightsRepository.findAll();

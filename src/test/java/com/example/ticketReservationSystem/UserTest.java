@@ -52,9 +52,9 @@ public class UserTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10,new SecureRandom());
         String encoded = bCryptPasswordEncoder.encode(password);
         User user = new User();
-        user.setEmail("admin1@gmail.com");
-        user.setName("admin1234");
-        user.setSurname("admin1234");
+        user.setEmail("admin12@gmail.com");
+        user.setName("admin12345");
+        user.setSurname("admin12345");
         user.setPassword(encoded);
         Role roleuser = role.findByName("ROLE_ADMIN");
         ArrayList<Role> roles = new ArrayList<Role>();

@@ -50,6 +50,14 @@ public class UserService implements UserDetailsService {
         return userRepository.save(register);
 
     }
+//    public User getUser(String id) {
+//        User user =
+//                .filter(t -> id.equals(t.getId()))
+//                .findFirst()
+//                .orElse(null);
+//
+//        return user;
+//    }
 
 
     @Override
