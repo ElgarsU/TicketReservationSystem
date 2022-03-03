@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
 
@@ -10,9 +11,25 @@
     <title>Add flight</title>
 </head>
 <body>
-<br>
 <div class="container" align = "center">
-    <h2>Add flight to list</h2>
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="/admin">
+            <div class="font-weight-bold">
+                <img src="\images\airline.png" width="32" height="32" class="d-inline-block align-top " alt="">
+                Ticket Reservation System</div>
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div sec:authorize="isAuthenticated()">
+                    Hello <span th:text="${currentUser.getUsername()}"></span></div>
+            <li><a th:href="@{/logout}">&nbsp;Log out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h3>Add flight to list</h3>
+
     <br>
     <form th:action="@{/saveFlight}" th:object="${flight}" method="POST">
         <input type="text" th:field="*{departureLocation}" placeholder="Departure Airport" class="form-control col-4 mb-4"/>

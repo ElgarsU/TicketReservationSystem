@@ -3,6 +3,8 @@ package com.example.ticketReservationSystem.controller;
 import com.example.ticketReservationSystem.model.Flights;
 import com.example.ticketReservationSystem.repository.FlightsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +45,11 @@ public class FlightsController {
         List<Flights> flights = flightsRepository.findAll();
         model.addAttribute("flights", flights);
         return "manage-flights";
+    }
+
+    @ModelAttribute("currentUser")
+    public UserDetails getCurrentUser(Authentication authentication) {
+        return (authentication == null) ? null : (UserDetails) authentication.getPrincipal();
     }
 
 }
