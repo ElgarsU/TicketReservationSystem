@@ -48,7 +48,7 @@ public class UserTest {
 
     @Test
     public void testCreateUser(){
-        String password = "admin123";
+        String password = "admin";
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10,new SecureRandom());
         String encoded = bCryptPasswordEncoder.encode(password);
         User user = new User();

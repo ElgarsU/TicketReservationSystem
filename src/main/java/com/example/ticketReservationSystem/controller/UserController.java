@@ -53,7 +53,7 @@ public class UserController {
 
     @GetMapping("/admin")
     public String forAdmin(){
-        return "admin_test";
+        return "admin";
     }
     @ModelAttribute("currentUser")
     public UserDetails getCurrentUser(Authentication authentication) {
