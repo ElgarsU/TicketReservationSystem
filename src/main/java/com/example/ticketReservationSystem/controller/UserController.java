@@ -38,8 +38,9 @@ public class UserController {
         return "admin_test";
     }
 
-
-
-
+    @GetMapping("/profile")
+    public String profile(){
+        return "user_profile";
+    }
 
 }
