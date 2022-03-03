@@ -75,5 +75,9 @@ public class User {
         this.tickets = tickets;
     }
 
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
+
 
 }

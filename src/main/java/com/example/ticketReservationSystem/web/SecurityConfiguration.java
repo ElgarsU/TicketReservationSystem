@@ -48,6 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return auth;
     }
 
+
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
@@ -59,19 +62,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/static/**","/webjars/**");
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
-                        "/register**",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**").permitAll()
-                .anyRequest().authenticated()
+        http.authorizeRequests()
+                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-
                 .and()
                 .logout()
                 .invalidateHttpSession(true)

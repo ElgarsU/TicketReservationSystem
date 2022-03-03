@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
     public User save(UserRegistrationDto userRegistrationDto){
         User register = new User(userRegistrationDto.getName(),
                 userRegistrationDto.getSurname(), userRegistrationDto.getEmail(),
-                passwordEncoder.encode(userRegistrationDto.getPassword()),Arrays.asList(new Role("ROLE_USER")));
+                passwordEncoder.encode(userRegistrationDto.getPassword()),Arrays.asList(new Role("User")));
         return userRepository.save(register);
 
     }
