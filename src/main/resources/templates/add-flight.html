@@ -11,10 +11,10 @@
 </head>
 <body>
 <br>
-<div class="container text-center">
+<div class="container" align = "center">
     <h2>Add flight to list</h2>
-    </hr>
-    <form th:action="@{/saveEmployee}" th:object="${flight}" method="POST">
+    <br>
+    <form th:action="@{/saveFlight}" th:object="${flight}" method="POST">
         <input type="text" th:field="*{departureLocation}" placeholder="Departure Airport" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{arrivalLocation}" placeholder="Destination Airport" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{flightStart}" placeholder="Flight Departure Time" class="form-control col-4 mb-4"/>
@@ -25,7 +25,6 @@
     </form>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -35,5 +34,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
 </body>
 </html>
