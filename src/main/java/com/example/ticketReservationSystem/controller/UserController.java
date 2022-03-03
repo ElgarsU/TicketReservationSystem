@@ -49,8 +49,6 @@ public class UserController {
     }
 
 
-    
-
     @GetMapping("/admin")
     public String forAdmin(){
         return "admin";
@@ -60,6 +58,12 @@ public class UserController {
         return (authentication == null) ? null : (UserDetails) authentication.getPrincipal();
     }
 
+    @GetMapping("/user")
+    public String userPanel(Model model, @AuthenticationPrincipal UserDetails currentUser){
+        User user = userRepository.findByEmail(currentUser.getUsername());
+        model.addAttribute("user", user);
+        return "user";
+    }
 
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal UserDetails currentUser){

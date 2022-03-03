@@ -1,10 +1,13 @@
 package com.example.ticketReservationSystem.controller;
 
 import com.example.ticketReservationSystem.model.Ticket;
+import com.example.ticketReservationSystem.model.User;
 import com.example.ticketReservationSystem.repository.TicketRepository;
+import com.example.ticketReservationSystem.repository.UserRepository;
 import com.example.ticketReservationSystem.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +25,15 @@ public class TicketController {
     private TicketRepository ticketRepository;
     @Autowired
     private TicketService ticketService;
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/tickets")
-    public String viewAllTickets(Model model) {
+    public String viewAllTickets(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         List<Ticket> ticket = ticketRepository.findAll();
+        User user = userRepository.findByEmail(currentUser.getUsername());
         model.addAttribute("listTickets", ticket);
+        model.addAttribute("user", user);
         return "tickets";
     }
 
