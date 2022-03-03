@@ -2,6 +2,9 @@ package com.example.ticketReservationSystem.controller;
 
 import com.example.ticketReservationSystem.model.UserRegistrationDto;
 import com.example.ticketReservationSystem.service.UserService;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +29,9 @@ public class RegisterController {
 
     @GetMapping
     public String showregister(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken))
+            return "tickets";
         model.addAttribute("user", new UserRegistrationDto());
         return "signup_form";
     }

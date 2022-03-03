@@ -48,6 +48,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return auth;
     }
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService);
+    }
+
+
 
 
 
@@ -70,6 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/show_ticket",true)
                 .permitAll()
                 .and()
                 .logout()
