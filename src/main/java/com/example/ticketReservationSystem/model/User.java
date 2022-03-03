@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -37,7 +34,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
 
-    private Collection<Role> roles;
+    private Collection<Role> roles = new HashSet<>();
 
     @OneToMany
     List<Ticket> tickets;
@@ -51,32 +48,32 @@ public class User {
         this.email=email;
         this.password=password;
     }
+
     public User(String name, String surname, String email, String password,Collection<Role> roles) {
         this.name=name;
         this.surname=surname;
         this.email=email;
         this.password=password;
         this.roles = roles;
-        this.tickets = tickets;
+
     }
-    public User(String name, String surname, String email, String password,Collection<Role> roles,List<Ticket> tickets) {
-        this.name=name;
-        this.surname=surname;
-        this.email=email;
-        this.password=password;
-        this.roles = roles;
-        this.tickets = tickets;
-    }
-    public User(String name, String surname, String email, String password,List<Ticket> tickets) {
-        this.name=name;
-        this.surname=surname;
-        this.email=email;
-        this.password=password;
-        this.tickets = tickets;
-    }
+
+
+
 
     public void addRole(Role role){
         this.roles.add(role);
+    }
+
+    public boolean hasRole(String roleName){
+        Iterator<Role> iterator = this.roles.iterator();
+        while(iterator.hasNext()){
+            Role role = iterator.next();
+            if(role.getName().equals(roleName)){
+                return true;
+            }
+        }
+        return false;
     }
 
 
