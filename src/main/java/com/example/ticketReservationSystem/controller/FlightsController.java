@@ -61,4 +61,10 @@ public class FlightsController {
         return mav;
     }
 
+    @GetMapping("/deleteFlight")
+    public String deleteFlight(@RequestParam long flightId) {
+        flightsRepository.deleteById(flightId);
+        return "redirect:/manageFlights";
+    }
+
 }

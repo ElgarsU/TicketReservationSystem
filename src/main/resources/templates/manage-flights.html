@@ -39,6 +39,7 @@
                     <th>Flight Arrival Time</th>
                     <th>Ticket Price (per seat)</th>
                     <th>Available seats</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,7 @@
                     <td th:text="${flight.flightCapacity}"></td>
                     <td>
                         <a th:href="@{updateFlight(flightId=${flight.id})}" class="btn btn-info">Update</a>
+                        <a th:href="@{deleteFlight(flightId=${flight.id})}" class="btn btn-danger ml-2">Delete</a>
             </tbody>
         </table>
     </div>
