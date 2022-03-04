@@ -30,7 +30,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             redirectURL = "/admin";
         }
         else{
-            redirectURL = "/flights";
+            redirectURL = "/user";
         }
         response.sendRedirect(redirectURL);
 
