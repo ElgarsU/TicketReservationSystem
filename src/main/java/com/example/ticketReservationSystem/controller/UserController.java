@@ -94,4 +94,18 @@ public class UserController {
         return "manage-users";
     }
 
+
+    @GetMapping("/adminUpdateUser")
+    public ModelAndView adminUpdateUser(@RequestParam long userId) {
+        ModelAndView mav = new ModelAndView("edit-user");
+        User user = userRepository.findById(userId).get();
+        mav.addObject("user", user);
+        return mav;
+    }
+
+    @PostMapping("/adminSaveUser")
+    public String adminSaveUser(@ModelAttribute User user) {
+        userRepository.save(user);
+        return "redirect:/manageUsers";
+    }
 }

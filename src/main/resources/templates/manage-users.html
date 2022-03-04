@@ -33,9 +33,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Departure Airport</th>
-                    <th>Destination Airport</th>
-                    <th>Flight Date</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>E-Mail</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -45,7 +45,7 @@
                     <td th:text="${user.surname}"></td>
                     <td th:text="${user.email}"></td>
                     <td>
-<!--                        <a th:href="@{updateFlight(flightId=${flight.id})}" class="btn btn-info">Update</a>-->
+                        <a th:href="@{adminUpdateUser(userId=${user.id})}" class="btn btn-info">Update</a>
 <!--                        <a th:href="@{deleteFlight(flightId=${flight.id})}" class="btn btn-danger ml-2">Delete</a>-->
             </tbody>
         </table>
