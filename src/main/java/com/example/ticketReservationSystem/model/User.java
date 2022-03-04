@@ -26,6 +26,7 @@ public class User {
     private String surname;
     private String email;
     private String password;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -33,14 +34,10 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-
     private Collection<Role> roles = new HashSet<>();
 
-    @OneToMany
-    List<Ticket> tickets;
-
-
-
+    @ManyToMany
+    private List<Flights> flights;
 
     public User(String name, String surname, String email, String password) {
         this.name=name;
@@ -64,6 +61,9 @@ public class User {
     public void addRole(Role role){
         this.roles.add(role);
     }
+    public void addFlight(Flights flights){
+        this.flights.add(flights);
+    }
 
     public boolean hasRole(String roleName){
         Iterator<Role> iterator = this.roles.iterator();
@@ -75,6 +75,7 @@ public class User {
         }
         return false;
     }
+
 
 
 }

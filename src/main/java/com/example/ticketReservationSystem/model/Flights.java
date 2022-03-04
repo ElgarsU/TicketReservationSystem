@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "flights")
@@ -15,6 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Flights {
 
+    @Column(unique = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -43,4 +45,7 @@ public class Flights {
     @Column(name = "flight_status", nullable = false)
     private String flightStatus;
 
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List <User> user;
 }

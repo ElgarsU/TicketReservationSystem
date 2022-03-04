@@ -1,6 +1,8 @@
 package com.example.ticketReservationSystem.service;
 
+import com.example.ticketReservationSystem.model.Flights;
 import com.example.ticketReservationSystem.model.Role;
+
 import com.example.ticketReservationSystem.model.User;
 import com.example.ticketReservationSystem.model.UserRegistrationDto;
 import com.example.ticketReservationSystem.repository.UserRepository;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
+    @Autowired
+    private FlightService flightService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -33,9 +37,12 @@ public class UserService implements UserDetailsService {
         this.userRepository=userRepository;
     }
 
-//    public Optional<User> getUser(Long id){
-//        return userRepository.findById(id);
-//    }
+    public User addTicket(Long id,Authentication authentication){
+        Flights flights = flightService.getFlightsById(id);
+        User user = getCurrentlyLoggedInUser(authentication);
+        user.addFlight(flights);
+        return userRepository.save(user);
+    }
 
 
 
@@ -46,14 +53,12 @@ public class UserService implements UserDetailsService {
         return userRepository.save(register);
 
     }
-//    public User getUser(String id) {
-//        User user =
-//                .filter(t -> id.equals(t.getId()))
-//                .findFirst()
-//                .orElse(null);
-//
-//        return user;
-//    }
+    public User getCurrentlyLoggedInUser(Authentication authentication){
+        var name = authentication.getName();
+
+        return userRepository.findByEmail(name);
+    }
+
 
 
     @Override

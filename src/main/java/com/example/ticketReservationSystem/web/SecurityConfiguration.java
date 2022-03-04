@@ -70,7 +70,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                //.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/register").permitAll()
+                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/addFlight").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/saveFlight").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/manageFlights").access("hasRole('ROLE_ADMIN')")
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")

@@ -1,7 +1,7 @@
 package com.example.ticketReservationSystem.controller;
 
 import com.example.ticketReservationSystem.model.Flights;
-import com.example.ticketReservationSystem.model.Ticket;
+
 import com.example.ticketReservationSystem.model.User;
 import com.example.ticketReservationSystem.model.UserRegistrationDto;
 import com.example.ticketReservationSystem.repository.UserRepository;
@@ -31,29 +31,41 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    private boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || AnonymousAuthenticationToken.class.
+                isAssignableFrom(authentication.getClass())) {
+            return false;
+        }
+        return authentication.isAuthenticated();
+    }
+
 
 
     @RequestMapping("/login")
-    public String showlogin(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken))
-            return "tickets";
-        return "index";
+    public String showlogin(Model model, @AuthenticationPrincipal UserDetails currentUser){
+        User user = userRepository.findByEmail(currentUser.getUsername());
+        model.addAttribute("user", user);
+        if(isAuthenticated()){
+            return "index";
+        }
+        return "/login";
     }
-    @GetMapping("/")
-    public String home(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken))
-            return "tickets";
+    @RequestMapping("/")
+    public String home(Model model, @AuthenticationPrincipal UserDetails currentUser){
+        User user = userRepository.findByEmail(currentUser.getUsername());
+        model.addAttribute("user", user);
+          return "index";
 
-        return "index";
     }
+
 
 
     @GetMapping("/admin")
     public String forAdmin(){
         return "admin";
     }
+
     @ModelAttribute("currentUser")
     public UserDetails getCurrentUser(Authentication authentication) {
         return (authentication == null) ? null : (UserDetails) authentication.getPrincipal();
