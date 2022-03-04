@@ -34,11 +34,13 @@
     <form th:action="@{/saveFlight}" th:object="${flight}" method="POST">
         <input type="text" th:field="*{departureLocation}" placeholder="Departure Airport" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{arrivalLocation}" placeholder="Destination Airport" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{flightDate}" placeholder="Flight Date" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{flightStart}" placeholder="Flight Departure Time" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{flightEnd}" placeholder="Flight Arrival Time" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{ticketPrice}" placeholder="Ticket Price (per seat)" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{flightCapacity}" placeholder="Available seats" class="form-control col-4 mb-4"/>
-        <button class="btn btn-primary" type="submit">Add flight</button>
+        <input type="text" th:field="*{flightStatus}" placeholder="Flight status" class="form-control col-4 mb-4"/>
+        <button class="btn btn-primary" type="submit">Submit</button>
         <input type="hidden" th:field="*{id}">
     </form>
 </div>

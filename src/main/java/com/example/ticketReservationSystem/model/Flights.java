@@ -37,4 +37,10 @@ public class Flights {
     @Column(name = "flight_capacity", nullable = false)
     private int flightCapacity;
 
+    @Column(name = "flight_date", nullable = false)
+    private String flightDate;
+
+    @Column(name = "flight_status", nullable = false)
+    private String flightStatus;
+
 }

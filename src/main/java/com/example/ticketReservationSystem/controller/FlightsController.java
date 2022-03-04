@@ -20,12 +20,12 @@ public class FlightsController {
     @Autowired
     private FlightsRepository flightsRepository;
 
-    @GetMapping("/flights")
-    public ModelAndView viewAllFlights() {
-        ModelAndView mav = new ModelAndView("flights");
-        mav.addObject("flights", flightsRepository.findAll());
-        return mav;
-    }
+//    @GetMapping("/flights")
+//    public ModelAndView viewAllFlights() {
+//        ModelAndView mav = new ModelAndView("flights");
+//        mav.addObject("flights", flightsRepository.findAll());
+//        return mav;
+//    }
 
     @GetMapping("/addFlight")
     public ModelAndView addFlightForm() {
@@ -61,10 +61,10 @@ public class FlightsController {
         return mav;
     }
 
-    @GetMapping("/deleteFlight")
-    public String deleteFlight(@RequestParam long flightId) {
-        flightsRepository.deleteById(flightId);
-        return "redirect:/manageFlights";
-    }
+//    @GetMapping("/deleteFlight")
+//    public String deleteFlight(@RequestParam long flightId) {
+//        flightsRepository.deleteById(flightId);
+//        return "redirect:/manageFlights";
+//    }
 
 }

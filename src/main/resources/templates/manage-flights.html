@@ -8,7 +8,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
-    <title>TRS - All flights</title>
+    <title>Admin - Manage flights</title>
 </head>
 <body>
     <div class= "container" align = "center">
@@ -35,10 +35,12 @@
                 <tr>
                     <th>Departure Airport</th>
                     <th>Destination Airport</th>
+                    <th>Flight Date</th>
                     <th>Flight Departure Time</th>
                     <th>Flight Arrival Time</th>
                     <th>Ticket Price (per seat)</th>
                     <th>Available seats</th>
+                    <th>Flight status</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -46,13 +48,15 @@
                 <tr th:each="flight : ${flights}">
                     <td th:text="${flight.departureLocation}"></td>
                     <td th:text="${flight.arrivalLocation}"></td>
+                    <td th:text="${flight.flightDate}"></td>
                     <td th:text="${flight.flightStart}"></td>
                     <td th:text="${flight.flightEnd}"></td>
                     <td th:text="${flight.ticketPrice}"></td>
                     <td th:text="${flight.flightCapacity}"></td>
+                    <td th:text="${flight.flightStatus}"></td>
                     <td>
                         <a th:href="@{updateFlight(flightId=${flight.id})}" class="btn btn-info">Update</a>
-                        <a th:href="@{deleteFlight(flightId=${flight.id})}" class="btn btn-danger ml-2">Delete</a>
+<!--                        <a th:href="@{deleteFlight(flightId=${flight.id})}" class="btn btn-danger ml-2">Delete</a>-->
             </tbody>
         </table>
     </div>
