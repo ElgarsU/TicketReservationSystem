@@ -87,4 +87,11 @@ public class UserController {
         return mav;
     }
 
+    @GetMapping("/manageUsers")
+    public String viewAllUsers(Model model) {
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        return "manage-users";
+    }
+
 }
