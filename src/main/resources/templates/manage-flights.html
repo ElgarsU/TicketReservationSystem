@@ -49,6 +49,8 @@
                     <td th:text="${flight.flightEnd}"></td>
                     <td th:text="${flight.ticketPrice}"></td>
                     <td th:text="${flight.flightCapacity}"></td>
+                    <td>
+                        <a th:href="@{updateFlight(flightId=${flight.id})}" class="btn btn-info">Update</a>
             </tbody>
         </table>
     </div>

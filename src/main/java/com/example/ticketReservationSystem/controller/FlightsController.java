@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
@@ -50,6 +51,14 @@ public class FlightsController {
     @ModelAttribute("currentUser")
     public UserDetails getCurrentUser(Authentication authentication) {
         return (authentication == null) ? null : (UserDetails) authentication.getPrincipal();
+    }
+
+    @GetMapping("/updateFlight")
+    public ModelAndView updateFlight(@RequestParam long flightId) {
+        ModelAndView mav = new ModelAndView("add-flight");
+        Flights flight = flightsRepository.findById(flightId).get();
+        mav.addObject("flight", flight);
+        return mav;
     }
 
 }
