@@ -44,12 +44,8 @@ public class UserController {
 
     @RequestMapping("/login")
     public String showlogin(Model model, @AuthenticationPrincipal UserDetails currentUser){
-        User user = userRepository.findByEmail(currentUser.getUsername());
-        model.addAttribute("user", user);
-        if(isAuthenticated()){
-            return "index";
-        }
-        return "/login";
+
+        return "login";
     }
     @RequestMapping("/")
     public String home(Model model, @AuthenticationPrincipal UserDetails currentUser){

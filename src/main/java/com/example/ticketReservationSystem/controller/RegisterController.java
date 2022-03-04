@@ -1,11 +1,7 @@
 package com.example.ticketReservationSystem.controller;
 
-import com.example.ticketReservationSystem.model.User;
 import com.example.ticketReservationSystem.model.UserRegistrationDto;
-import com.example.ticketReservationSystem.repository.UserRepository;
 import com.example.ticketReservationSystem.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,22 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-@RequiredArgsConstructor
+
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
 
     private UserService userService;
-    @Autowired
-    UserRepository userRepository;
-    private boolean isAuthenticated() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || AnonymousAuthenticationToken.class.
-                isAssignableFrom(authentication.getClass())) {
-            return false;
-        }
-        return authentication.isAuthenticated();
-    }
 
     public RegisterController(UserService userService) {
         super();
@@ -44,9 +30,10 @@ public class RegisterController {
     }
 
     @GetMapping
-    public String showregister(Model model){
-
-
+    public String showregister(Model model,@AuthenticationPrincipal UserDetails currentUser){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken))
+            return "redirect:/index";
         model.addAttribute("user", new UserRegistrationDto());
         return "signup_form";
     }
