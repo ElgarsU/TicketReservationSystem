@@ -50,7 +50,9 @@
             <td th:text="${ticket.user.email}"></td>
             <td th:text="${ticket.flight.departureLocation}"></td>
             <td th:text="${ticket.flight.arrivalLocation}"></td>
-            <td><button type="submit" class="btn btn-danger">Cancel Ticket</button></td>
+            <td>
+                <a th:href="@{/deleteTicket(id=${ticket.id})}" class="btn btn-danger">Delete Ticket</a>
+            </td>
         </tbody>
     </table>
 </div>

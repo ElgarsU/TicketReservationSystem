@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -48,5 +49,11 @@ public class TicketController {
     @ModelAttribute("currentUser")
     public UserDetails getCurrentUser(Authentication authentication) {
         return (authentication == null) ? null : (UserDetails) authentication.getPrincipal();
+    }
+
+    @GetMapping("/deleteTicket")
+    public String deleteTicket(@RequestParam Long id){
+        ticketRepository.deleteById(id);
+        return "redirect:/tickets";
     }
 }
