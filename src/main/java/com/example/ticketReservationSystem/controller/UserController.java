@@ -1,5 +1,7 @@
 package com.example.ticketReservationSystem.controller;
 
+import com.example.ticketReservationSystem.model.Flights;
+import com.example.ticketReservationSystem.model.Ticket;
 import com.example.ticketReservationSystem.model.User;
 import com.example.ticketReservationSystem.model.UserRegistrationDto;
 import com.example.ticketReservationSystem.repository.UserRepository;
@@ -15,9 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -68,8 +69,22 @@ public class UserController {
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userRepository.findByEmail(currentUser.getUsername());
-         model.addAttribute("user", user);
+        model.addAttribute("user", user);
         return "user_profile";
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute User user) {
+        userRepository.save(user);
+        return "redirect:/profile";
+    }
+
+    @GetMapping("/updateUser")
+    public ModelAndView updateUser(@RequestParam long userId) {
+        ModelAndView mav = new ModelAndView("edit_profile");
+        User user = userRepository.findById(userId).get();
+        mav.addObject("user", user);
+        return mav;
     }
 
 }
