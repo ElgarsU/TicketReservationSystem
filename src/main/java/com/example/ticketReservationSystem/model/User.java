@@ -34,7 +34,7 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles = new HashSet<>();
+    private List<Role> roles;
 
     @ManyToMany
     private List<Flights> flights;
@@ -46,7 +46,7 @@ public class User {
         this.password=password;
     }
 
-    public User(String name, String surname, String email, String password,Collection<Role> roles) {
+    public User(String name, String surname, String email, String password,List<Role> roles) {
         this.name=name;
         this.surname=surname;
         this.email=email;

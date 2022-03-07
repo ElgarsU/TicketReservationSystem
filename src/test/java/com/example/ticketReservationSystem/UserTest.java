@@ -60,7 +60,7 @@ public class UserTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10,new SecureRandom());
         String encoded = bCryptPasswordEncoder.encode(password);
         User user = new User();
-        user.setEmail("admin12@gmail.com");
+        user.setEmail("admin123@gmail.com");
         user.setName("admin12345");
         user.setSurname("admin12345");
         user.setPassword(encoded);
