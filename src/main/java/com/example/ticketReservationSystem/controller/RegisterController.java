@@ -4,7 +4,9 @@ import com.example.ticketReservationSystem.model.UserRegistrationDto;
 import com.example.ticketReservationSystem.service.UserService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +30,10 @@ public class RegisterController {
     }
 
     @GetMapping
-    public String showregister(Model model){
+    public String showregister(Model model,@AuthenticationPrincipal UserDetails currentUser){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken))
-            return "tickets";
+            return "redirect:/index";
         model.addAttribute("user", new UserRegistrationDto());
         return "signup_form";
     }

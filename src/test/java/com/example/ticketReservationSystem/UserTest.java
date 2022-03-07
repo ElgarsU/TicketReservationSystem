@@ -1,8 +1,11 @@
 package com.example.ticketReservationSystem;
 
+import com.example.ticketReservationSystem.model.Flights;
 import com.example.ticketReservationSystem.model.Role;
+
 import com.example.ticketReservationSystem.model.User;
 import com.example.ticketReservationSystem.repository.RoleRepository;
+
 import com.example.ticketReservationSystem.repository.UserRepository;
 import nonapi.io.github.classgraph.utils.Assert;
 import org.junit.jupiter.api.Test;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
@@ -25,18 +29,22 @@ import java.util.List;
 public class UserTest {
 
 
-
+    @Autowired
+    private TestEntityManager testEntityManager;
     @Autowired
     RoleRepository role;
     @Autowired
     UserRepository userRepository;
 
+    private final long id=1;
+    private final long id2=2;
+
 
     @Test
     public void createTestRoles(){
-        Role user = new Role("User");
-        Role admin = new Role("Admin");
-        role.saveAll(List.of(user,admin));
+//        Role user = new Role("User");
+        Role admin = new Role("ROLE_ADMIN");
+        role.save(admin);
         List<Role> listRoles = role.findAll();
 
     }
@@ -64,8 +72,8 @@ public class UserTest {
 
         System.out.println("great");
 
-
     }
+
 
 
 }

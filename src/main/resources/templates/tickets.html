@@ -14,7 +14,7 @@
 <div class="container text-center">
 
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="/profile">
+        <a class="navbar-brand" href="/">
             <div class="font-weight-bold">
                 <img src="\images\airline.png" width="32" height="32" class="d-inline-block align-top " alt="">
                 Ticket Reservation System</div>
@@ -33,26 +33,28 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Ticket Number</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>Email</th>
-            <th>From</th>
-            <th>To</th>
-            <th></th>
+            <th>email</th>
+            <th>Departure location</th>
+            <th>Arrival location</th>
+            <th>Flight departure time</th>
+            <th>Flight arrival time</th>
+
+
         </tr>
         </thead>
         <tbody>
-        <tr th:each="ticket : ${listTickets}" th:if="${ticket.user.email == user.email}">
-            <td th:text="${ticket.Id}"></td>
-            <td th:text="${ticket.user.name}"></td>
-            <td th:text="${ticket.user.surname}"></td>
-            <td th:text="${ticket.user.email}"></td>
-            <td th:text="${ticket.flight.departureLocation}"></td>
-            <td th:text="${ticket.flight.arrivalLocation}"></td>
-            <td>
-                <a th:href="@{/deleteTicket(id=${ticket.id})}" class="btn btn-danger">Delete Ticket</a>
-            </td>
+
+        <tr th:each="flights : ${user.flights}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${flights.departureLocation}"></td>
+            <td th:text="${flights.arrivalLocation}"></td>
+            <td th:text="${flights.flightStart}"></td>
+            <td th:text="${flights.flightEnd}"></td>
+
         </tbody>
     </table>
 </div>

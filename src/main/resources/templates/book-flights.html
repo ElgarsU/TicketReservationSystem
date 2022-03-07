@@ -14,7 +14,7 @@
     <div class= "container" align = "center">
 
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="/admin">
+            <a class="navbar-brand" href="/">
                 <div class="font-weight-bold">
                     <img src="\images\airline.png" width="32" height="32" class="d-inline-block align-top " alt="">
                     Ticket Reservation System</div>
@@ -33,6 +33,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Flight id</th>
                     <th>Departure Airport</th>
                     <th>Destination Airport</th>
                     <th>Flight Date</th>
@@ -45,7 +46,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="flight : ${flights}">
+                <tr th:each="flight : ${listFlights}"  >
+                    <td th:text="${flight.id}"></td>
                     <td th:text="${flight.departureLocation}"></td>
                     <td th:text="${flight.arrivalLocation}"></td>
                     <td th:text="${flight.flightDate}"></td>
@@ -55,7 +57,10 @@
                     <td th:text="${flight.flightCapacity}"></td>
                     <td th:text="${flight.flightStatus}"></td>
                     <td>
-                        <a th:href="@{updateFlight(flightId=${flight.id})}" class="btn btn-info">Book flight</a>
+                        <form action="#" th:action="@{/bookfl}" method="POST">
+                            <input type="hidden" name="id" th:value="${flight.id}" />
+                            <button type="submit" class="btn btn-primary mt-2">book flights </button></form>
+
             </tbody>
         </table>
     </div>
@@ -69,6 +74,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
+<script th:src="@{/js/add_ticket.js}"/>
+    <script type="text/javascript" th:src="@{/images/js/add_ticket.js}"></script>
 </body>
 </html>
