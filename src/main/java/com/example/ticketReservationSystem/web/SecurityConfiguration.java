@@ -64,13 +64,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    public void configure(WebSecurity web) throws Exception {
 //        web
 //                .ignoring()
-//                .antMatchers("/resources/**", "/static/**","/webjars/**");
+//                .antMatchers("/resources/**", "/static/**","/webjars/**").antMatchers("D:\\ticketReservationSystem\\src\\main\\resources\\static\\images");
 //    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        String[] staticResources  =  {
+                "/css/**",
+                "/images/**",
+                "/fonts/**",
+                "/scripts/**",
+        };
+
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers(staticResources).permitAll()
                 .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/addFlight").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/saveFlight").access("hasRole('ROLE_ADMIN')")
