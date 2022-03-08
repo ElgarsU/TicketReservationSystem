@@ -12,27 +12,33 @@
 <body>
 <div class = "container text-center">
 
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light text-right">
+        <a class="navbar-brand" href="/user">
             <div class="font-weight-bold">
                 <img src="\images\airline.png" width="32" height="32" class="d-inline-block align-top " alt="">
                 Ticket Reservation System</div>
         </a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <div sec:authorize="isAuthenticated()">
-                    Hello <span th:text="${currentUser.getUsername()}"></span></div>
-            <li><a th:href="@{/logout}">&nbsp;Log out</a>
-            </li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-3">
+                <li class="nav-item">
+                    <div sec:authorize="isAuthenticated()">
+                        Hello <span th:text="${currentUser.getUsername()}"></span></div>
+                <li><a th:href="@{/logout}">&nbsp;Log out</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <h3 class="mt-5">Welcome <td th:text="${user.name}"></td>!</h3>
 
     <br>
-    <a href="/profile" class="btn btn-primary btn-lg col-sm-2 mb-2 text-light" role="button">View Profile</a>
-    <a href="/tickets" class="btn btn-primary btn-lg col-sm-2 mb-2 text-light">View Tickets</a>
-    <a href="/book" class="btn btn-primary btn-lg col-sm-2 mb-2 text-light">Book Flights</a>
+    <a href="/profile" class="btn btn-primary btn-lg col-xs-12 col-sm-12 col-md-3 mb-2 text-light">View Profile</a>
+    <a href="/tickets" class="btn btn-primary btn-lg col-xs-12 col-sm-12 col-md-3 mb-2 text-light">View Tickets</a>
+    <a href="/book" class="btn btn-primary btn-lg col-xs-12 col-sm-12 col-md-3 mb-2 text-light">Book Flights</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
