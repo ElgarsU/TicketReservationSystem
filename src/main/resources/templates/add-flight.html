@@ -47,7 +47,7 @@
         <input type="text" th:field="*{ticketPrice}" placeholder="Ticket Price (per seat)" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{flightCapacity}" placeholder="Available seats" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{flightStatus}" placeholder="Flight status" class="form-control col-4 mb-4"/>
-        <button type="button" th:onclick="showAlert()">Show Alert</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
         <input type="hidden" th:field="*{id}">
     </form>
 </div>

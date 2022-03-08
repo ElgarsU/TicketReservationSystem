@@ -1,14 +1,9 @@
 package com.example.ticketReservationSystem.controller;
-
 import com.example.ticketReservationSystem.model.Flights;
-
-import com.example.ticketReservationSystem.model.User;
-import com.example.ticketReservationSystem.model.UserRegistrationDto;
 import com.example.ticketReservationSystem.repository.FlightsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +19,6 @@ public class FlightsController {
 
     @Autowired
     private FlightsRepository flightsRepository;
-
-
-//    @GetMapping("/flights")
-//    public ModelAndView viewAllFlights() {
-//        ModelAndView mav = new ModelAndView("flights");
-//        mav.addObject("flights", flightsRepository.findAll());
-//        return mav;
-//    }
 
     @GetMapping("/addFlight")
     public ModelAndView addFlightForm() {
@@ -66,7 +53,6 @@ public class FlightsController {
         mav.addObject("flight", flight);
         return mav;
     }
-
 
 //    @GetMapping("/deleteFlight")
 //    public String deleteFlight(@RequestParam long flightId) {
