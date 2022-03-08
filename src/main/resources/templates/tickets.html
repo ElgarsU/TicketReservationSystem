@@ -13,50 +13,55 @@
 <body>
 <div class="container text-center">
 
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light text-right">
+        <a class="navbar-brand" href="/user">
             <div class="font-weight-bold">
                 <img src="\images\airline.png" width="32" height="32" class="d-inline-block align-top " alt="">
                 Ticket Reservation System</div>
         </a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <div sec:authorize="isAuthenticated()">
-                    Hello <span th:text="${currentUser.getUsername()}"></span></div>
-            <li><a th:href="@{/logout}">&nbsp;Log out</a>
-            </li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-3">
+                <li class="nav-item">
+                    <div sec:authorize="isAuthenticated()">
+                        Hello <span th:text="${currentUser.getUsername()}"></span></div>
+                <li><a th:href="@{/logout}">&nbsp;Log out</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <h3 class="mt-3">Your Tickets</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>E-mail</th>
+                <th>Departure&nbsp;location</th>
+                <th>Arrival&nbsp;location</th>
+                <th>Flight&nbsp;departure&nbsp;time</th>
+                <th>Flight&nbsp;arrival&nbsp;time</th>
+            </tr>
+            </thead>
+            <tbody>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>email</th>
-            <th>Departure location</th>
-            <th>Arrival location</th>
-            <th>Flight departure time</th>
-            <th>Flight arrival time</th>
+            <tr th:each="flights : ${user.flights}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.surname}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${flights.departureLocation}"></td>
+                <td th:text="${flights.arrivalLocation}"></td>
+                <td th:text="${flights.flightStart}"></td>
+                <td th:text="${flights.flightEnd}"></td>
 
-
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr th:each="flights : ${user.flights}">
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.surname}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${flights.departureLocation}"></td>
-            <td th:text="${flights.arrivalLocation}"></td>
-            <td th:text="${flights.flightStart}"></td>
-            <td th:text="${flights.flightEnd}"></td>
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
