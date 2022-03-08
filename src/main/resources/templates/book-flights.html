@@ -35,18 +35,19 @@
             </div>
         </nav>
 
-        <h3>Book flights</h3>
+        <h3 class="mt-3">Book flights</h3>
 
-        <table>
-            <thead>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th>Flight id</th>
                     <th>Departure Airport</th>
                     <th>Destination Airport</th>
-                    <th>Flight Date</th>
-                    <th>Flight Departure Time</th>
-                    <th>Flight Arrival Time</th>
-                    <th>Ticket Price (per seat)</th>
+                    <th>Date</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>Price (per seat)</th>
                     <th>Available seats</th>
                     <th>Flight status</th>
                     <th>Options</th>
@@ -83,5 +84,6 @@
             crossorigin="anonymous"></script>
 <script th:src="@{/js/add_ticket.js}"/>
     <script type="text/javascript" th:src="@{/images/js/add_ticket.js}"></script>
+    </div>
 </body>
 </html>
