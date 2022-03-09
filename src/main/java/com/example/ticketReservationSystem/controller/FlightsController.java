@@ -1,7 +1,7 @@
 package com.example.ticketReservationSystem.controller;
+
 import com.example.ticketReservationSystem.model.Flights;
 import com.example.ticketReservationSystem.repository.FlightsRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 @Controller
