@@ -27,7 +27,9 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-    private UserService userService;
+    public UserService userService;
+
+
     @Autowired
     UserRepository userRepository;
 

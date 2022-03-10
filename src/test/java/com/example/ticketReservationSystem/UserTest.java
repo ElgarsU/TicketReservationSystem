@@ -62,7 +62,7 @@ import java.util.List;
 @ContextConfiguration(classes = UserTestController.class)
 
 //@SpringBootApplication( exclude = { SecurityConfiguration.class} )
-@WebMvcTest(RegisterController.class)
+@WebMvcTest(UserTestController.class)
 //@AutoConfigureMockMvc(addFilters = false)
 public class UserTest {
 
@@ -100,9 +100,6 @@ public class UserTest {
 
     @Test
     public void testCreateUser() throws Exception{
-        Role roleuser = role.findByName("ROLE_ADMIN");
-        ArrayList<Role> roles = new ArrayList<Role>();
-        roles.add(roleuser);
 
         User user = User.builder()
                 .name("admina")
@@ -126,6 +123,11 @@ public class UserTest {
                 .andReturn();
         String content = result.getResponse().getContentAsString();
         System.out.println(content);
+
+    }
+
+    @Test
+    public void getUser() throws Exception{
 
     }
 
