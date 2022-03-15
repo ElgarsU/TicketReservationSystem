@@ -34,7 +34,7 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
+    public List<Role> roles;
 
     @ManyToMany
     private List<Flights> flights;

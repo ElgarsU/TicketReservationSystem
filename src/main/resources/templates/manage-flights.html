@@ -63,8 +63,9 @@
                 <td class="text-center" th:text="${flight.flightCapacity}"></td>
                 <td class="text-center" th:text="${flight.flightStatus}"></td>
                 <td>
-                    <a th:href="@{updateFlight(flightId=${flight.id})}" class="btn btn-info text-light">Update</a>
-                    <!--                        <a th:href="@{deleteFlight(flightId=${flight.id})}" class="btn btn-danger ml-2">Delete</a>-->
+                    <a th:href="@{updateFlight(flightId=${flight.id})}"
+                       class="btn btn-info text-light btn-block">Update</a>
+                    <a th:href="@{deleteFlight(flightId=${flight.id})}" class="btn btn-danger btn-block">Delete</a></td>
             </tbody>
         </table>
     </div>

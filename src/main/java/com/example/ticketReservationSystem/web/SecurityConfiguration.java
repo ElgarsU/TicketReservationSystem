@@ -6,6 +6,7 @@ import com.example.ticketReservationSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -60,12 +61,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web
-//                .ignoring()
-//                .antMatchers("/resources/**", "/static/**","/webjars/**").antMatchers("D:\\ticketReservationSystem\\src\\main\\resources\\static\\images");
-//    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**","/webjars/**").antMatchers("D:\\ticketReservationSystem\\src\\main\\resources\\static\\images");
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -75,9 +77,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/fonts/**",
                 "/scripts/**",
         };
+//        http.cors().and().csrf().disable();
 
-        http.authorizeRequests()
+        http.httpBasic().and().authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/registeruser").permitAll()
+                .antMatchers("/testuser").permitAll()
                 .antMatchers(staticResources).permitAll()
                 .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/addFlight").access("hasRole('ROLE_ADMIN')")
